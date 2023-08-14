@@ -135,7 +135,6 @@ class BasebackupOperation:
                     "--no-version-check",
                     f"--parallel={self.copy_threads}",
                     "--stream",
-                    "xbstream",
                     "--target-dir",
                     self.temp_dir,
                     "--extra-lsndir",

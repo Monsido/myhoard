@@ -37,6 +37,12 @@ myhoard/version.py: version.py
 .PHONY: version
 version: myhoard/version.py
 
+.PHONY: deb
+deb: $(generated)
+	cp debian/changelog.in debian/changelog
+	dch -v $(long_ver) --distribution unstable "Automatically built .deb"
+	dpkg-buildpackage -A -uc -us
+
 .PHONY: rpm
 rpm: $(generated)
 	git archive --output=myhoard-rpm-src.tar --prefix=myhoard/ HEAD

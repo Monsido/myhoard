@@ -1,0 +1,12 @@
+#!/bin/sh
+
+set -e
+
+#DEBHELPER#
+
+if [ "$1" = configure ]; then
+    chown mysql:mysql /var/lib/myhoard
+    exit 0
+fi
+
+exit 0

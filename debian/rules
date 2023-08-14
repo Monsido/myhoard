@@ -1,0 +1,16 @@
+#!/usr/bin/make -f
+
+export PYBUILD_NAME=myhoard
+
+%:
+	dh $@ --with python3 --buildsystem=pybuild
+
+override_dh_install:
+	dh_install
+	install -d debian/myhoard/lib/systemd/system/
+	install -m 644 myhoard.unit debian/myhoard/lib/systemd/system/myhoard.service
+	mkdir -p debian/myhoard/var/lib/myhoard
+	chown -R mysql:mysql debian/myhoard/var/lib/myhoard
+
+#override_dh_auto_test:
+#	$(MAKE) lint unittest
